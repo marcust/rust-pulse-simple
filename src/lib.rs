@@ -98,10 +98,10 @@ impl<C: ChannelCount> SimpleClient<C> {
         let desc_c = CString::new(desc).unwrap();
         let s = unsafe {
             pa_simple_new(null(),             // Use the default server.
-                          name_c.as_ptr() as *const i8,  // Our application's name.
+                          name_c.as_ptr() as *const u8,  // Our application's name.
                           dir,
                           null(),             // Use the default device.
-                          desc_c.as_ptr() as *const i8,  // Description of our stream.
+                          desc_c.as_ptr() as *const u8,  // Description of our stream.
                           &ss,                // Our sample format.
                           null(),             // Use default channel map
                           null(),             // Use default buffering attributes.
