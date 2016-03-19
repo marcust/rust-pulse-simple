@@ -7,6 +7,11 @@ use std::mem::{transmute, size_of};
 use std::marker::PhantomData;
 use std::ffi::CString;
 
+#[cfg(target_env = "armhf")]
+type PtrType = u8;
+
+type PtrType = i8;
+
 
 pub trait Sampleable {
     fn format() -> pa_sample_format_t;
@@ -98,10 +103,10 @@ impl<C: ChannelCount> SimpleClient<C> {
         let desc_c = CString::new(desc).unwrap();
         let s = unsafe {
             pa_simple_new(null(),             // Use the default server.
-                          name_c.as_ptr() as *const u8,  // Our application's name.
+                          name_c.as_ptr() as *const PtrType,  // Our application's name.
                           dir,
                           null(),             // Use the default device.
-                          desc_c.as_ptr() as *const u8,  // Description of our stream.
+                          desc_c.as_ptr() as *const PtrType,  // Description of our stream.
                           &ss,                // Our sample format.
                           null(),             // Use default channel map
                           null(),             // Use default buffering attributes.
