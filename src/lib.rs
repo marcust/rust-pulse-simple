@@ -10,9 +10,11 @@ use std::ffi::CString;
 #[cfg(target_arch = "arm")]
 type PtrType = u8;
 
-#[cfg(not(target_arch = "arm"))]
+#[cfg(target_arch = "x86_64")]
 type PtrType = i8;
 
+#[cfg(target_arch = "x86")]
+type PtrType = i8;
 
 pub trait Sampleable {
     fn format() -> pa_sample_format_t;
