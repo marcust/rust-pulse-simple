@@ -10,6 +10,7 @@ use std::ffi::CString;
 #[cfg(target_env = "arm")]
 type PtrType = u8;
 
+#[cfg(not(target_env = "arm"))]
 type PtrType = i8;
 
 
