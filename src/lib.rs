@@ -7,10 +7,10 @@ use std::mem::{transmute, size_of};
 use std::marker::PhantomData;
 use std::ffi::CString;
 
-#[cfg(target_env = "arm")]
+#[cfg(target_arch = "arm")]
 type PtrType = u8;
 
-#[cfg(not(target_env = "arm"))]
+#[cfg(not(target_arch = "arm"))]
 type PtrType = i8;
 
 
